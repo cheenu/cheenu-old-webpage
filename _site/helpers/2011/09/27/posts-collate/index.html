@@ -1,0 +1,99 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+   <title>Posts Collate</title>
+   <meta name="author" content="Name Lastname" />
+   <link href="http://feeds.feedburner.com/username" rel="alternate" title="your title" type="application/atom+xml" />
+
+   <!-- syntax highlighting CSS -->
+   <link rel="stylesheet" href="/assets/themes/tom/css/syntax.css" type="text/css" />
+
+   <!-- Homepage CSS -->
+   <link rel="stylesheet" href="/assets/themes/tom/css/screen.css" type="text/css" media="screen, projection" />
+
+   <!-- Typekit -->
+   <script type="text/javascript" src="http://use.typekit.com/jpd0pfm.js"></script>
+   <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+</head>
+<body>
+
+  <div class="site">
+    <div class="title">
+      <a href="/">My Blog =)</a>
+      <a class="extra" href="/archive.html">Archive</a>
+      <a class="extra" href="/pages.html">Pages</a>
+      <a class="extra" href="/categories.html">Categories</a>
+      <a class="extra" href="/tags.html">Tags</a>
+    </div>
+  
+    <div id="post">
+  <h1>Posts Collate</h1>
+  <p class="meta">
+    27 September 2011 
+    
+  </p>
+  <p>The posts collate helper organizes and lists posts in month/year clusters. The posts collate helper follows the <a href='/lessons/bootstrap-api.html'>Jekyll-bootstrap include helper</a> strategy.</p>
+
+<h2 id='usage'>Usage</h2>
+
+<h3 id='collate_all_posts_in_reverse_chronological_order'>Collate All Posts in Reverse Chronological Order</h3>
+
+<p>By default all posts are organized in reverse-chronological order - newest to oldest.</p>
+<pre><code>&#123;% assign posts_collate = site.posts %&#125;
+&#123;% include helpers/posts_collate.html %&#125;</code></pre>
+<h3 id='collate_a_subset_of_posts'>Collate a Sub-Set of Posts</h3>
+
+<p>To collate a sub-set of posts, just pass in the sub-set. Bellow, only posts tagged &#8220;jekyll&#8221; will be collated:</p>
+<pre><code>&#123;% assign posts_collate = site.tags.jekyll %&#125;
+&#123;% include helpers/posts_collate.html %&#125;</code></pre>
+<h2 id='source'>Source</h2>
+
+<p>The source code is available at:</p>
+
+<pre><code>./_includes/helpers/posts_collate.html</code></pre>
+</div>
+
+<div id="related">
+  <h2>Related Posts</h2>
+  <ul class="posts">
+    
+      <li><span>29 Dec 2011</span> &raquo; <a href="/lessons/2011/12/29/jekyll-introduction">Jekyll Introduction</a></li>
+    
+      <li><span>30 Nov 2011</span> &raquo; <a href="/api/2011/11/30/template-data-api">Template Data Api</a></li>
+    
+      <li><span>29 Nov 2011</span> &raquo; <a href="/api/2011/11/29/jekyll-liquid-api">Jekyll Liquid Api</a></li>
+    
+  </ul>
+</div>
+
+  
+    <div class="footer">
+      <div class="contact">
+        <p>
+          Name Lastname<br />
+          tagline<br />
+          blah@email.test
+        </p>
+      </div>
+      <div class="contact">
+        <p>
+          <a href="http://github.com/username/">github.com/username</a><br />
+          <a href="http://twitter.com/username/">twitter.com/username</a><br />
+          <a href="http://flickr.com/photos/username/">flickr.com/photos/username</a>
+        </p>
+      </div>
+      <div class="rss">
+        <a href="http://feeds.feedburner.com/username">
+          <img src="/images/rss.png" alt="Subscribe to RSS Feed" />
+        </a>
+      </div>
+    </div>
+  </div>
+  <a href="http://github.com/username"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub" /></a>
+
+
+</body>
+</html>
+

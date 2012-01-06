@@ -1,0 +1,221 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+   <title>Template Data Api</title>
+   <meta name="author" content="Name Lastname" />
+   <link href="http://feeds.feedburner.com/username" rel="alternate" title="your title" type="application/atom+xml" />
+
+   <!-- syntax highlighting CSS -->
+   <link rel="stylesheet" href="/assets/themes/tom/css/syntax.css" type="text/css" />
+
+   <!-- Homepage CSS -->
+   <link rel="stylesheet" href="/assets/themes/tom/css/screen.css" type="text/css" media="screen, projection" />
+
+   <!-- Typekit -->
+   <script type="text/javascript" src="http://use.typekit.com/jpd0pfm.js"></script>
+   <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+</head>
+<body>
+
+  <div class="site">
+    <div class="title">
+      <a href="/">My Blog =)</a>
+      <a class="extra" href="/archive.html">Archive</a>
+      <a class="extra" href="/pages.html">Pages</a>
+      <a class="extra" href="/categories.html">Categories</a>
+      <a class="extra" href="/tags.html">Tags</a>
+    </div>
+  
+    <div id="post">
+  <h1>Template Data Api</h1>
+  <p class="meta">
+    30 November 2011 
+    
+  </p>
+  <p>The Template data API is a comprehensive list of all data accessible in templates through using the Liquid templating language. The next lesson will focus on <a href='/api/2011/11/29/jekyll-liquid-api'>accessing Jekyll data via Liquid</a></p>
+
+<h2 id='global_pagepost_data'>Global Page/Post Data</h2>
+
+<p>Every content file that Jekyll processes is either a page or a post. In both cases the data relative to the specific page or post being rendered within the template is accessible through the <code>page</code> variable. The page variable is a globally accessible variable available to all templates, posts, pages, and includes being rendered for the given post/page instance.</p>
+
+<pre><code>/* The following format represents a Jekyll::Post or Jekyll::Page object. Jekyll::Post and Jekyll::Page objects may be nested in other variables in which case you can expect this same format: */
+page = {
+ &quot;layout&quot;=&gt;&quot;post&quot;,
+ &quot;categories&quot;=&gt;[&quot;lessons&quot;],
+ &quot;title&quot;=&gt;&quot;Jekyll Liquid Api&quot;,
+ &quot;url&quot;=&gt;&quot;/lessons/jekyll-liquid-api.html&quot;,
+ &quot;date&quot;=&gt;2011-01-27 00:00:00 -0800,
+ &quot;id&quot;=&gt;&quot;/lessons/jekyll-liquid-api&quot;,
+ &quot;next&quot;=&gt; #Jekyll:Post @id=&quot;/lessons/template-data-api&quot;,
+ &quot;previous&quot;=&gt; #Jekyll:Post @id=&quot;/lessons/configuring-urls&quot;,
+ &quot;tags&quot;=&gt;[&quot;tagname1&quot;, &quot;tagname2&quot;],
+ &quot;custom_variable&quot;=&gt; [&quot;a&quot;, &quot;custom&quot;, &quot;defined&quot;, &quot;data-structure&quot;],
+ &quot;content&quot;=&gt;&quot;... this is the unparsed raw html page/post content ...&quot;
+}</code></pre>
+
+<h3 id='setting_custom_data'>Setting Custom Data</h3>
+
+<p>You can set custom variables through the post or page Yaml Front matter and they will be included in the page hash.</p>
+
+<p>One important thing to note is that each Jekyll &#8220;rendering&#8221; instance is treating as a page/post object. ALL YAML Front matter is merged into the current page/post instance. So if you define custom data in the post file, then define custom data in the sub-template, and also in the root template, all data will merge into the same page hash.</p>
+
+<h2 id='content_data'>Content Data</h2>
+
+<p>Jekyll uses a special variable named <code>content</code> to refer to the current page/post content.</p>
+
+<p>The difference between <code>content</code> and <code>page.content</code> is the former is parsed with markdown or textile while the latter is raw.</p>
+
+<p>The <code>content</code> variable is only accessible in template files and include files provided the include is included into a template.</p>
+
+<h3 id='content_in_primary_templates'>Content in Primary Templates.</h3>
+
+<p>When calling <code>content</code> in a primary template the content includes any sub-templates previously rendered by the page/post.</p>
+
+<h3 id='content_in_subtemplates'>Content in Sub-Templates.</h3>
+
+<p>When calling <code>content</code> in a sub-template <code>content</code> includes any sub-sub-templates previously rendered by the page/post. If there are none, <code>content</code> just reflects the page/post as processed by markdown or textile.</p>
+
+<h2 id='global_site_data'>Global Site Data</h2>
+
+<p>This data is available anywhere liquid is available. This includes templates, posts, pages, and includes.</p>
+
+<pre><code>site = {
+  &quot;related_posts&quot;=&gt;
+    [...(Array of liquified Jekyll::Post objects)...],
+ &quot;safe&quot;=&gt;false,
+ &quot;auto&quot;=&gt;true,
+ &quot;server&quot;=&gt;true,
+ &quot;server_port&quot;=&gt;4000,
+ &quot;source&quot;=&gt;&quot;/Users/jade/Dropbox/github/jekyll-bootstrap&quot;,
+ &quot;destination&quot;=&gt;&quot;/Users/jade/Dropbox/github/jekyll-bootstrap/_site&quot;,
+ &quot;plugins&quot;=&gt;&quot;/Users/jade/Dropbox/github/jekyll-bootstrap/_plugins&quot;,
+ &quot;future&quot;=&gt;true,
+ &quot;lsi&quot;=&gt;false,
+ &quot;pygments&quot;=&gt;false,
+ &quot;markdown&quot;=&gt;&quot;maruku&quot;,
+ &quot;permalink&quot;=&gt;&quot;/:categories/:title.html&quot;,
+ &quot;markdown_ext&quot;=&gt;&quot;markdown,mkd,mkdn,md&quot;,
+ &quot;textile_ext&quot;=&gt;&quot;textile&quot;,
+ &quot;maruku&quot;=&gt;
+  {
+   &quot;use_tex&quot;=&gt;false,
+   &quot;use_divs&quot;=&gt;false,
+   &quot;png_engine&quot;=&gt;&quot;blahtex&quot;,
+   &quot;png_dir&quot;=&gt;&quot;images/latex&quot;,
+   &quot;png_url&quot;=&gt;&quot;/images/latex&quot;
+  },
+ &quot;rdiscount&quot;=&gt;
+  {
+    &quot;extensions&quot;=&gt;[]
+  },
+ &quot;redcarpet&quot;=&gt;
+  {
+    &quot;extensions&quot;=&gt;[]
+  },
+ &quot;kramdown&quot;=&gt;
+  {
+   &quot;auto_ids&quot;=&gt;true,
+   &quot;footnote_nr&quot;=&gt;1,
+   &quot;entity_output&quot;=&gt;&quot;as_char&quot;,
+   &quot;toc_levels&quot;=&gt;&quot;1..6&quot;,
+   &quot;use_coderay&quot;=&gt;false,
+   &quot;coderay&quot;=&gt;
+    {
+     &quot;coderay_wrap&quot;=&gt;&quot;div&quot;,
+     &quot;coderay_line_numbers&quot;=&gt;&quot;inline&quot;,
+     &quot;coderay_line_number_start&quot;=&gt;1,
+     &quot;coderay_tab_width&quot;=&gt;4,
+     &quot;coderay_bold_every&quot;=&gt;10,
+     &quot;coderay_css&quot;=&gt;&quot;style&quot;
+    }
+  },
+ &quot;time&quot;=&gt;2011-12-20 14:03:53 -0800,
+ &quot;posts&quot;=&gt;
+  [...(Array of liquified Jekyll::Post objects)...],
+ &quot;pages&quot;=&gt;
+  [...(Array of liquified Jekyll::Page objects)...],
+ &quot;html_pages&quot;=&gt;
+  [...(Array of liquified Jekyll::Page objects)...],
+ &quot;categories&quot;=&gt;
+  {&quot;examples&quot;=&gt;
+    [...(Array of liquified Jekyll::Post objects)...],
+   &quot;lessons&quot;=&gt;
+    [...(Array of liquified Jekyll::Post objects)...],
+ &quot;tags&quot;=&gt;
+  {
+   &quot;permalinks&quot;=&gt;
+    [...(Array of liquified Jekyll::Post objects)...],
+   &quot;urls&quot;=&gt;
+    [...(Array of liquified Jekyll::Post objects)...],
+   &quot;templating&quot;=&gt;
+    [...(Array of liquified Jekyll::Post objects)...],
+   &quot;liquid&quot;=&gt;
+    [...(Array of liquified Jekyll::Post objects)...],
+   &quot;posts&quot;=&gt;
+    [...(Array of liquified Jekyll::Post objects)...]
+  }
+}</code></pre>
+
+<h3 id='sitewide_custom_data'>Sitewide Custom Data</h3>
+
+<p>Set sitewide custom data using the config file.</p>
+
+<p>Variables held in the config file get merged into the site variable.</p>
+
+<h2 id='categories'>Categories</h2>
+
+<p>Categories may only be applied to posts and are available on a per-post basis as well as aggregated in a sitewide global variable, i.e. all categories available for the website.</p>
+
+<p>When iterating over categories the order is alpha descending</p>
+
+<h2 id='tags'>Tags</h2>
+
+<p>Tags may only be applied to posts and are available on a per-post basis as well as aggregated in a sitewide global variable, i.e. all tags available for the website.</p>
+
+<p>When iterating over tags the order is alpha descending.</p>
+</div>
+
+<div id="related">
+  <h2>Related Posts</h2>
+  <ul class="posts">
+    
+      <li><span>29 Dec 2011</span> &raquo; <a href="/lessons/2011/12/29/jekyll-introduction">Jekyll Introduction</a></li>
+    
+      <li><span>29 Nov 2011</span> &raquo; <a href="/api/2011/11/29/jekyll-liquid-api">Jekyll Liquid Api</a></li>
+    
+      <li><span>28 Nov 2011</span> &raquo; <a href="/api/2011/11/28/bootstrap-api">Bootstrap Api</a></li>
+    
+  </ul>
+</div>
+
+  
+    <div class="footer">
+      <div class="contact">
+        <p>
+          Name Lastname<br />
+          tagline<br />
+          blah@email.test
+        </p>
+      </div>
+      <div class="contact">
+        <p>
+          <a href="http://github.com/username/">github.com/username</a><br />
+          <a href="http://twitter.com/username/">twitter.com/username</a><br />
+          <a href="http://flickr.com/photos/username/">flickr.com/photos/username</a>
+        </p>
+      </div>
+      <div class="rss">
+        <a href="http://feeds.feedburner.com/username">
+          <img src="/images/rss.png" alt="Subscribe to RSS Feed" />
+        </a>
+      </div>
+    </div>
+  </div>
+  <a href="http://github.com/username"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub" /></a>
+
+
+</body>
+</html>
+
