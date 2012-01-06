@@ -25,7 +25,7 @@ Instructions
 Credits
 =======
 
-This is an in-progress modification of Tom's setup and theme.
+This website has been bootstraped from Tom's setup on here
 
 > https://github.com/mojombo/mojombo.github.com
 
