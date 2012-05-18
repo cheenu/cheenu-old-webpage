@@ -12,7 +12,7 @@ It is easy to feel a sense of dejection when you read the mainstream news. You r
 
 You look back on all the years of high school drinking and college drinking and all the drinking in between and wonder what would have been if you had been more productive and spent less time hanging out with friends doing nothing at all. 
 
-The quote below is from Phil Galfond, one of the sickiest poker players ever. He's on the other side of us and thinks that the grass is greener on our side. Just like we all think the grass on his side is greener. 
+The quote below is from Phil Galfond's [blog](http://www.philgalfond.com/my-poker-other-story/), who is one of the sickiest poker players ever. He's on the other side of us and thinks that the grass is greener on our side. Just like we all think the grass on his side is greener. 
 
 >_So, I dropped out of school to play poker.  Would I do it again? Do I regret it?_
 
